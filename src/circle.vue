@@ -1,5 +1,9 @@
 <template>
-    <div>{{ circle.center.re }}</div>
+    <tr>
+        <td>{{ circle.center.re }}</td>
+        <td>{{ circle.center.im }}</td>
+        <td>{{ circle.radius }}</td>
+    </tr>
 </template>
 
 <script>

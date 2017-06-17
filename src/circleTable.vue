@@ -1,10 +1,15 @@
 <template>
-    <div>
-        <circle-table v-for="circle in circles"
+    <table>
+        <tr>
+            <th>x</th>
+            <th>y</th>
+            <th>r</th>
+        </tr>
+        <circle-table-element v-for="circle in circles"
                       v-bind:key="circle"
                       v-bind:circle="circle">
-        </circle-table>
-    </div>
+        </circle-table-element>
+    </table>
 </template>
 
 <script>
@@ -12,14 +17,9 @@
  import Circle from './circle.js';
 
  export default {
-     data: function(){
-         return {
-             circles: [new Circle(Complex.ONE, 100),
-                       new Circle(Complex.ZERO, 20)]
-         }
-     },
+     props: ['circles'],
      components: {
-         'circle-table': require('./circle.vue')
-     }
+         'circle-table-element': require('./circle.vue')
+     },
  }
 </script>
