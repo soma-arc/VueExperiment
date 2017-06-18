@@ -13,9 +13,6 @@
 </template>
 
 <script>
- import Complex from '../lib/GeometryUtils/src/complex.js';
- import Circle from './circle.js';
-
  export default {
      props: ['circles'],
      components: {

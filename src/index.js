@@ -1,26 +1,27 @@
 import Vue from 'vue';
 import Complex from '../lib/GeometryUtils/src/complex.js';
 import Circle from './circle.js';
+import Canvas from './canvas.js';
+import Scene from './scene.js';
+
 const CircleTable = require('./circleTable.vue');
 
 window.addEventListener('load', () => {
-    let circlesList = [new Circle(Complex.ONE, 100),
-                       new Circle(Complex.ZERO, 20)]
-    let d = {'circles': circlesList};
+    const scene = new Scene();
+    const c = new Circle(Complex.ZERO, 100);
+    //    scene.addCircle(c);
+    const circlesList = [c];
+    scene.setCirclesList(circlesList);
+    const d = { 'circles': circlesList };
     new Vue({
         el: '#app',
         data: d,
         render: (h) => {
-            return h('circle-table', {'props': d})
+            return h('circle-table', { 'props': d })
         },
         components: { 'circle-table': CircleTable }
     });
 
-    let i = 0;
-    function animLoop () {
-        //        d['circles'].push(new Circle(Complex.ONE, 100));
-        circlesList[0].center.re = i++;
-        requestAnimationFrame(animLoop);
-    }
-    animLoop();
+    const canvas = new Canvas('canvas', scene);
+    canvas.render();
 })
