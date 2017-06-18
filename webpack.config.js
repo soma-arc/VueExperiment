@@ -19,6 +19,18 @@ module.exports = () => ({
                 test: /\.vue$/, loader: 'vue-loader'
             },
             {
+                test: /\.(glsl|vert|frag)$/,
+                exclude: /\.(njk|nunjucks)\.(glsl|vert|frag)$/,
+                loader: 'shader-loader',
+            },
+            {
+                test: /\.(njk|nunjucks)\.(glsl|vert|frag)$/,
+                loader: 'nunjucks-loader',
+                query: {
+                    root: `${__dirname}/src`,
+                },
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
